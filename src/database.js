@@ -26,7 +26,7 @@ const getUsers = (request, response) => {
   
     pool.query('SELECT * FROM public.user WHERE id = $1', [id], (error, results) => {
       if (error) {
-        throw error
+        return response.status(500).json(error)
       }
       response.status(200).json(results.rows)
     })
@@ -51,7 +51,7 @@ const getUsers = (request, response) => {
       [name, email, id],
       (error, results) => {
         if (error) {
-          throw error
+          return response.status(500).json(error)
         }
         response.status(200).send(`User modified with ID: ${id}`)
       }
@@ -63,7 +63,7 @@ const getUsers = (request, response) => {
   
     pool.query('DELETE FROM user WHERE id = $1', [id], (error, results) => {
       if (error) {
-        throw error
+        return response.status(500).json(error)
       }
       response.status(200).send(`User deleted with ID: ${id}`)
     })
