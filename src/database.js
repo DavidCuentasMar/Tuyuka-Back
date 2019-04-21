@@ -15,7 +15,6 @@ const pool = new Pool({
 const getUsers = (request, response) => {
     pool.query('SELECT * FROM public.user ORDER BY id ASC', (error, results) => {
       if (error) {
-        //throw error
         return response.status(500).json(error)
       }
       return response.status(200).json(results.rows)
