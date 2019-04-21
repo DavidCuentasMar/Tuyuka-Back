@@ -12,7 +12,9 @@ app.use(express.json());
 //Global Variables
 
 // Routes
-
+app.get('/', (req,res)=>{
+  res.send('Hello World');
+});
 
 // Starting the server
 const server = app.listen(app.get("port"), () => {
