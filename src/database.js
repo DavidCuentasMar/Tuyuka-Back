@@ -13,11 +13,6 @@ const pool = new Pool({
 })
 
 const getUsers = (request, response) => {
-  console.log(process.env.PGUSER);
-  console.log(process.env.PGHOST);
-  console.log(process.env.DATABASE_URL);
-  console.log(process.env.PGPASSWORD);
-  console.log(process.env.PGPORT);
     pool.query('SELECT * FROM public.user', (error, results) => {
       if (error) {
         return response.status(500).json(error)
