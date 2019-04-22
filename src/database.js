@@ -6,13 +6,18 @@ dotenv.config();
 const pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
-  database: process.env.DATABASE_URL,
+  database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
   port: process.env.PGPORT,
   ssl:true,
 })
 
 const getUsers = (request, response) => {
+  console.log(process.env.PGUSER);
+  console.log(process.env.PGHOST);
+  console.log(process.env.DATABASE_URL);
+  console.log(process.env.PGPASSWORD);
+  console.log(process.env.PGPORT);
     pool.query('SELECT * FROM public.user', (error, results) => {
       if (error) {
         return response.status(500).json(error)
