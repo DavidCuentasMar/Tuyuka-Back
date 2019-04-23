@@ -34,11 +34,11 @@ const getUsers = (request, response) => {
   
   const createUser = (request, response) => {
     const { email, password } = request.body
-    pool.query('INSERT INTO public.user (email, password) VALUES ($1, $2)', [email, password], (error, results) => {
+    pool.query('INSERT INTO public.user (email, password) VALUES ($1, $2)  RETURNING id', [email, password], (error, results) => {
       if (error) {
         response.status(500).send(error)
       }
-      response.status(201).send('User added')
+      response.status(201).send(results)
     })
   }
   
